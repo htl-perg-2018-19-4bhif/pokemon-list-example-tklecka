@@ -1,13 +1,14 @@
-/* Structure */
-table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
 
-  button{
-    background-color: lightgray;
-  }
+button{
+  background-color: lightgray;
+}
+
+.mat-table {
+  height: 800px;
+  overflow: auto;
+  width: 100%;
+}
