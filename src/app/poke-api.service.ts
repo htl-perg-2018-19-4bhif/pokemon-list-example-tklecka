@@ -14,8 +14,7 @@ export class PokeApiService {
 
   get(url: string): Observable<Object> {
     const endpointUrl = `${this.baseURL}${url}`;
-    return this.http
-      .get(endpointUrl);
+    return this.http.get(endpointUrl);
   }
 
 }

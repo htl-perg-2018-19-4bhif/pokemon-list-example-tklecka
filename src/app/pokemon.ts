@@ -3,4 +3,5 @@ export interface Pokemon {
     name: string;
     weight: number;
     abilities: Array<String>;
+    url: string;
 }
