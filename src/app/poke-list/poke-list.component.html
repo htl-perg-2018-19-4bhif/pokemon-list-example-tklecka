@@ -22,7 +22,7 @@
     <ng-container matColumnDef="details">
       <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
       <mat-cell *matCellDef="let pokemon">
-        <button mat-button>Show Details</button>
+        <button mat-button (click)="showDetails(pokemon)">Show Details</button>
       </mat-cell>
     </ng-container>
 

@@ -36,7 +36,7 @@ export class PokeListComponent implements OnInit {
     this.pokeapi.get("pokemon/").subscribe(
       resultArray => {
         let obj = JSON.stringify(resultArray);
-        let names: string[] = this.getNames(obj);
+        let names: string[] = this.getNames(obj,"name");
 
         let counter = 0;
         let pokemonArray: Pokemon[] = [];
@@ -57,15 +57,40 @@ export class PokeListComponent implements OnInit {
     )
   }
 
-  getNames(msg: string) {
+  getNames(msg: string, filter: string) {
+    console.log(filter);
     let pokemonNamesArray: string[] = []
     var obj = JSON.parse(msg, function (key, value) {
-      if (key == "name") {
+      if (key == filter) {
         pokemonNamesArray.push(value);
       } else {
       }
     });
     return pokemonNamesArray;
+  }
+
+  showDetails(pokemonSelected: Pokemon){
+    this.pokeapi.get("pokemon/"+pokemonSelected.name+"/").subscribe(
+      resultArray => {
+        let pokemon: Pokemon = {} as Pokemon;
+        let abilites: string[] = [];
+
+        let jsonString = resultArray;
+        
+        let abilityObjects = jsonString['abilities'];
+        abilityObjects.forEach(ability => {
+          abilites.push(ability['ability']['name'])
+        })
+        pokemon.abilities = abilites;
+        pokemon.name = jsonString['name'];
+        pokemon.weight = jsonString['weight'];
+        pokemon.id = pokemonSelected.id;
+        pokemon.url = this.pokeapi.baseURL+"pokemon/"+pokemon.name+"/";
+
+        console.log(pokemon);
+      },
+      error => console.log("GET Error :: " + error)
+    )
   }
 
 }

@@ -10,7 +10,7 @@ export class PokeApiService {
 
   constructor(private http: HttpClient) { }
 
-  private baseURL = 'https://pokeapi.co/api/v2/';
+  public baseURL = 'https://pokeapi.co/api/v2/';
 
   get(url: string): Observable<Object> {
     const endpointUrl = `${this.baseURL}${url}`;
