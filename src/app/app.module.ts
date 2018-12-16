@@ -7,7 +7,10 @@ import { MatInputModule,
   MatSortModule, 
   MatTableModule,
   MatButtonModule,
-  MatPaginator} from "@angular/material";
+  MatDialogModule,
+  MatPaginator,
+  MatExpansionModule,
+  MatListModule} from "@angular/material";
 import { AppComponent } from './app.component';
 import { PokeListComponent } from './poke-list/poke-list.component';
 import { PokeDetailsComponent } from './poke-details/poke-details.component';
@@ -25,11 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     MatInputModule,
     MatTableModule,
+    MatListModule,
     MatPaginatorModule,
+    MatDialogModule,
     MatSortModule,
+    MatExpansionModule,
     MatProgressSpinnerModule,
     HttpClientModule
-  ],
+  ],entryComponents: [PokeDetailsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

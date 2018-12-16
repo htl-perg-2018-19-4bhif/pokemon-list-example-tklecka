@@ -4,4 +4,5 @@ export interface Pokemon {
     weight: number;
     abilities: Array<String>;
     url: string;
+    pic: string;
 }

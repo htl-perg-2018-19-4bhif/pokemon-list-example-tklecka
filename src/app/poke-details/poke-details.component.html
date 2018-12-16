@@ -1,3 +1,19 @@
-<p>
-  poke-details works!
-</p>
+<img src="{{data.pokemon.pic}}">
+<h1 mat-dialog-title>{{data.pokemon.name}}</h1>
+<div mat-dialog-content>
+  <mat-list>
+    <mat-list-item>Weight: {{data.pokemon.weight}} kg</mat-list-item>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Abilities
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+              <ul>
+                <p *ngFor="let ability of data.pokemon.abilities"><li>{{ability}}</li></p>
+              </ul>
+          </mat-expansion-panel>
+    </mat-accordion>
+  </mat-list>
+</div>

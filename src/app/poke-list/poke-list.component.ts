@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { PokeApiService } from '../poke-api.service';
 import { Pokemon } from '../pokemon';
+import { PokeDetailsComponent } from '../poke-details/poke-details.component';
 
 @Component({
   selector: 'app-poke-list',
@@ -15,7 +16,7 @@ export class PokeListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private pokeapi: PokeApiService) {
+  constructor(private pokeapi: PokeApiService, public dialog: MatDialog) {
     this.getPokemon();
   }
 
@@ -83,14 +84,25 @@ export class PokeListComponent implements OnInit {
         })
         pokemon.abilities = abilites;
         pokemon.name = jsonString['name'];
-        pokemon.weight = jsonString['weight'];
+        pokemon.weight = jsonString['weight'] / 10;
         pokemon.id = pokemonSelected.id;
         pokemon.url = this.pokeapi.baseURL+"pokemon/"+pokemon.name+"/";
+        pokemon.pic = jsonString['sprites']['front_default'];
+
+        this.openDialog(pokemon);
 
         console.log(pokemon);
       },
       error => console.log("GET Error :: " + error)
     )
   }
+
+  openDialog( pok: Pokemon ) {
+        let dialogRef = this.dialog.open( PokeDetailsComponent, {
+            height: '450px',
+            width: '450px',
+            data: { pokemon: pok },
+        } );
+    }
 
 }
