@@ -1,11 +1,12 @@
 <div>
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-  </mat-form-field>
+  <mat-form-field class="searchform" appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search somthing like Pikachu">
+    </mat-form-field>
 </div>
 
 <div>
-  <mat-table class="tblPoke" bordered="true" max mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-table class="tblPoke mat-elevation-z8" bordered="true" max mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
@@ -20,14 +21,14 @@
     </ng-container>
 
     <ng-container matColumnDef="details">
-      <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
-      <mat-cell *matCellDef="let pokemon">
-        <button mat-button (click)="showDetails(pokemon)">Show Details</button>
+      <mat-header-cell class="test" *matHeaderCellDef> Details </mat-header-cell>
+      <mat-cell class="test" *matCellDef="let pokemon">
+        <button mat-button (click)="showDetails(pokemon)" class="mat-elevation-z2">Show Details</button>
       </mat-cell>
     </ng-container>
 
     <mat-header-row mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></mat-header-row>
     <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100, 250, 1000]" [pageSize]=25></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100, 250, 1000]" [pageSize]=15></mat-paginator>
 </div>
